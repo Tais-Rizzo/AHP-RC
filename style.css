@@ -1,0 +1,45 @@
+/* Estilo personalizado para aumentar a largura do block-container */
+div.block-container {
+    width: 100% !important; /* Ajuste o valor conforme necessário */
+    margin: 40px auto;
+    padding: 10px;
+    border: 3px solid #000080;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra leve */
+}
+
+/* Estilo personalizado para o div com a classe específica */
+div.st-emotion-cache-1wmy9hl.e1f1d6gn1 {
+    width: 100% !important; /* Ajuste o valor conforme necessário */
+    padding: 0px;
+    
+}
+
+/* Estilo personalizado para o div com data-baseweb="base-input" */
+div[data-baseweb="base-input"] {
+    border: 3px solid #000080;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+* Estilo personalizado para o input dentro desse div */
+div[data-baseweb="base-input"] > input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Efeito de hover para o input */
+div[data-baseweb="base-input"] > input:hover {
+    background-color: #f0f0f0;
+}
+
+p {
+    font-family: 'Roboto'; /* Altere para a fonte desejada */
+    font-size: 16px; /* Tamanho da fonte */
+    color: #080808; /* Cor do texto */
+}
