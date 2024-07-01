@@ -1,15 +1,20 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from PIL import Image
+import re
 
 # Configuração da página
 st.set_page_config(
     page_title="Mundo da Geomática - AHP",
     page_icon="https://www.mundogeomatica.com/iconesite/iconesite.ico",
-    #layout="wide",
+    # layout="wide",
 )
 
-# Esconder o menu e definir cor do texto
+# Exibe a imagem no topo da página
+cols_image = st.columns([1, 1, 1.3])
+cols_image[1].image(Image.open("Logomarcas/Logomarca_Oficial_Mundo_Geomatica_Alta_Resolucao_Sem_Fundo-Colorida.png"), width=300)
+
 # Esconder o menu e definir cor do texto
 hide_st_style = """
             <style>
@@ -33,7 +38,7 @@ st.markdown('<div class="centered-container">', unsafe_allow_html=True)
 
 st.markdown(
     """
-    <div style="background-color: #000080; padding: 10px; margin: 0px;">
+    <div style="background-color: #000080; padding: 6px; margin: 0px;">
         <p style="font-size: 18px; color: #ffffff; font-family: 'Roboto'; text-align: center; margin: 0;">
             Portal e Canal do YouTube Mundo da Geomática - Geotecnologias Gratuitas ao Alcance de Todos!
         </p>
@@ -75,7 +80,7 @@ df = pd.DataFrame(data)
 with st.expander("Escala de comparadores"):
     
     st.table(df)
-    st.write("Fonte: Saaty (1977), apud Rosot (2000), adaptado.")
+    st.write("Fonte: Saaty (1977), apud Rosot (2000).")
 
 # Dados da tabela
 data2 = {
@@ -91,7 +96,7 @@ df2['IR'] = df2['IR'].round(2)
 with st.expander("Tabela de valores de IR"):
     st.write("Valores de IR para matrizes quadradas de ordem n.")
     st.table(df2)
-
+    st.write("Fonte: Saaty (1991).")
 
 # Inicializando a lista de variáveis e a matriz
 if 'variables' not in st.session_state:
@@ -101,7 +106,15 @@ if 'matrix' not in st.session_state:
 
 # Função para adicionar uma nova variável
 def add_variable(new_variable):
-    if new_variable:
+    if not new_variable:
+        st.warning("O nome da variável não pode estar vazio.")
+    elif not re.match("^[A-Za-z0-9_ ]*$", new_variable):
+        st.warning("O nome da variável não pode conter caracteres especiais.")
+    elif new_variable in st.session_state.variables:
+        st.warning(f"A variável '{new_variable}' já foi inserida.")
+    elif len(st.session_state.variables) >= 15:
+        st.warning("Não é possível adicionar mais variáveis. O limite é 15.")
+    else:
         st.session_state.variables.append(new_variable)
         size = len(st.session_state.variables)
         if size > 1:
@@ -110,8 +123,6 @@ def add_variable(new_variable):
             st.session_state.matrix = new_matrix
         else:
             st.session_state.matrix = pd.DataFrame(np.ones((1, 1)), index=st.session_state.variables, columns=st.session_state.variables)
-
-
 
 # Função para calcular a Razão de Consistência (RC)
 def calculate_consistency_ratio(matrix):
@@ -151,7 +162,6 @@ def adjust_matrix(matrix):
             matrix.iloc[i, j] = 1 / matrix.iloc[j, i]
     return matrix
 
-
 # Formulário para adicionar nova variável
 with st.form(key='add_variable_form'):
     cols = st.columns([4, 1, 1])
@@ -176,6 +186,7 @@ with st.form(key='add_variable_form'):
 # Apresentando o DataFrame editável
 if len(st.session_state.variables) > 0:
     # Editando DataFrame
+
     edited_df = st.data_editor(st.session_state.matrix)  # 👈 DataFrame editável
 
     # Botão para confirmar edições e fazer cálculos
@@ -197,6 +208,7 @@ if len(st.session_state.variables) > 0:
 
             cols2 = st.columns(2)
 
+            
             with cols2[0]:
                 st.data_editor(adjusted_matrix)
 
@@ -225,11 +237,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown('<style>{}</style>'.format(f.read()), unsafe_allow_html=True)
-
 
 local_css("style.css")
