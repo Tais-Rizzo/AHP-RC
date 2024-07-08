@@ -224,18 +224,53 @@ if len(st.session_state.variables) > 0:
         else:
             st.write("Não é possível calcular a Razão de Consistência para matrizes menores que 2x2.")
 
-# Exibir as informações dos autores
+# Adicionar container centralizado
+st.markdown('<div class="centered-container">', unsafe_allow_html=True)
+
 st.markdown(
     """
-    <div style="text-align: center; font-size: 18px; color: #000000; font-family: 'Roboto';">
-         <br>
-        Jeferson Pereira Martins Silva <br>
-        Taís Rizzo Moreira <br>
-        Alexandre Rosa dos Santos <br>
+    <div style="font-size: 18px; color: #000000; font-family: 'Roboto'; text-align: justify; margin: 0;">
+            No eBook gratuito intitulado "Método AHP (Analytic Hierarchy Process) + Aplicativo Web MG-AHP no QGIS" são apresentadas, passo a passo, didaticamente, todas as etapas metodológicas necessárias para interpretação teórica e prática no Método AHP, com destaque para um estudo de caso utilizando os resultados do Aplicativo Web MG-AHP no QGIS.
+        </p>
     </div>
     """,
     unsafe_allow_html=True
 )
+
+
+# Exibir as informações dos autores
+
+st.markdown(
+    """
+    <div style="text-align: center; font-size: 18px; color: #000000; font-family: 'Roboto';">
+         <br>
+            Conheça nosso <a href="https://www.mundogeomatica.com/ahpqgis.htm" style="color: #0000FF;">Ebook</a><br>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+# Exibe a imagem no fim da página
+cols_image = st.columns([1, 1, 1.3])
+cols_image[1].image(Image.open("Logomarcas/Capa_Livro_Metodo_AHP_QGIS.png"), width=300)
+st.markdown(
+    """
+    <div style="text-align: center; font-size: 18px; color: #000000; font-family: 'Roboto';">
+         <br>
+              <b>Desenvolvedores:</b> <br>
+        Jeferson Pereira Martins Silva <br>
+        Taís Rizzo Moreira <br>
+        Alexandre Rosa dos Santos <br>
+        Larissa Marin Scaramussa <br>
+        Luis Antônio Coimbra Borge <br>
+        Jeferson Luiz Ferrari <br>
+        
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
 def local_css(file_name):
     with open(file_name) as f:
