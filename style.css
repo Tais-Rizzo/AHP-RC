@@ -1,3 +1,11 @@
+/* Importar a fonte Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Aplicar a fonte Roboto a todo o documento */
+body, p, div, input, h1, h2, h3, h4, h5, h6, span, label, button {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* Estilo personalizado para aumentar a largura do block-container */
 div.block-container {
     width: 100% !important; /* Ajuste o valor conforme necessário */
@@ -11,7 +19,6 @@ div.block-container {
 div.st-emotion-cache-1wmy9hl.e1f1d6gn1 {
     width: 100% !important; /* Ajuste o valor conforme necessário */
     padding: 0px;
-    
 }
 
 /* Estilo personalizado para o div com data-baseweb="base-input" */
@@ -22,7 +29,7 @@ div[data-baseweb="base-input"] {
     border-radius: 5px;
 }
 
-* Estilo personalizado para o input dentro desse div */
+/* Estilo personalizado para o input dentro desse div */
 div[data-baseweb="base-input"] > input {
     width: 100%;
     box-sizing: border-box;
@@ -39,7 +46,6 @@ div[data-baseweb="base-input"] > input:hover {
 }
 
 p {
-    font-family: 'Roboto'; /* Altere para a fonte desejada */
     font-size: 16px; /* Tamanho da fonte */
     color: #080808; /* Cor do texto */
 }
