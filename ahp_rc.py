@@ -7,7 +7,7 @@ import re
 # Configuração da página
 st.set_page_config(
     page_title="Mundo da Geomática - AHP",
-        # layout="wide",
+    layout="wide",
 )
 
 # Esconder o menu e definir cor do texto
